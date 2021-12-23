@@ -45,6 +45,8 @@ func (l *Lexer) NextToken() token.Token {
 		tok = newToken(token.COLON, l.ch)
 	case ';':
 		tok = newToken(token.SEMICOLON, l.ch)
+	case '"':
+		tok = l.readString()
 	case '(':
 		tok = newToken(token.LPAREN, l.ch)
 	case ')':
@@ -113,6 +115,10 @@ func newToken(tokenType token.TokenType, ch byte) token.Token {
 	return token.Token{Type: tokenType, Literal: string(ch)}
 }
 
+func newStringToken(tokenType token.TokenType, str string) token.Token {
+	return token.Token{Type: tokenType, Literal: str}
+}
+
 func (l *Lexer) peekChar() byte {
 	if l.readPosition >= len(l.input) {
 		return 0
@@ -139,6 +145,21 @@ func (l *Lexer) readIdentifier() string {
 	}
 
 	return l.input[position:l.position]
+}
+
+func (l *Lexer) readString() token.Token {
+	position := l.position + 1
+	for {
+		l.readChar()
+		if l.ch == '\\' {
+			l.readChar()
+		} else if l.ch == '"' {
+			break
+		} else if l.ch == 0 {
+			return newStringToken(token.ERROR, "mismatched quotes")
+		}
+	}
+	return newStringToken(token.STRING, l.input[position:l.position])
 }
 
 func (l *Lexer) skipWhitespace() {
