@@ -58,8 +58,8 @@ if (5 < 10) {
 "foo bar"
 "foo\t\t\tbar"
 "foo\nbar"
-"foo \"bar\""`
-	// [1, 2];
+"foo \"bar\""
+[1, 2];`
 	// {"foo": "bar"}
 	// `
 
@@ -142,16 +142,15 @@ if (5 < 10) {
 		{token.SEMICOLON, ";"},
 		{token.STRING, "foobar"},
 		{token.STRING, "foo bar"},
-
 		{token.STRING, "foo\\t\\t\\tbar"},
 		{token.STRING, "foo\\nbar"},
 		{token.STRING, "foo \\\"bar\\\""},
-		// {token.LBRACKET, "["},
-		// {token.INT, "1"},
-		// {token.COMMA, ","},
-		// {token.INT, "2"},
-		// {token.RBRACKET, "]"},
-		// {token.SEMICOLON, ";"},
+		{token.LBRACKET, "["},
+		{token.INT, "1"},
+		{token.COMMA, ","},
+		{token.INT, "2"},
+		{token.RBRACKET, "]"},
+		{token.SEMICOLON, ";"},
 		// {token.LBRACE, "{"},
 		// {token.STRING, "foo"},
 		// {token.COLON, ":"},
