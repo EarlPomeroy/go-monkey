@@ -9,6 +9,7 @@ type Token struct {
 
 const (
 	ILLEGAL = "ILLEGAL"
+	ERROR   = "ERROR"
 	EOF     = "EOF"
 
 	// Identifiers and Literals
