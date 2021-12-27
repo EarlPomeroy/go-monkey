@@ -59,9 +59,9 @@ if (5 < 10) {
 "foo\t\t\tbar"
 "foo\nbar"
 "foo \"bar\""
-[1, 2];`
-	// {"foo": "bar"}
-	// `
+[1, 2];
+{"foo": "bar"}
+`
 
 	tests := []struct {
 		expectedType    token.TokenType
@@ -151,11 +151,11 @@ if (5 < 10) {
 		{token.INT, "2"},
 		{token.RBRACKET, "]"},
 		{token.SEMICOLON, ";"},
-		// {token.LBRACE, "{"},
-		// {token.STRING, "foo"},
-		// {token.COLON, ":"},
-		// {token.STRING, "bar"},
-		// {token.RBRACE, "}"},
+		{token.LBRACE, "{"},
+		{token.STRING, "foo"},
+		{token.COLON, ":"},
+		{token.STRING, "bar"},
+		{token.RBRACE, "}"},
 		{token.EOF, ""},
 	}
 
